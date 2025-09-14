@@ -38,25 +38,7 @@ namespace MySplashKitApp
             }
             _gameWindow.Close();
             _gameWindow = null;
-            Draw();
-            SplashKit.Delay(2500);
-
-            _player.Move(100, -70);
-            Draw();
-            SplashKit.Delay(2500);
-
-            _player.Rotate(60);
-            Draw();
-            SplashKit.Delay(2500);
-
-            _player.Move(100, 0);
-            Draw();
-            SplashKit.Delay(2500);
-
-            _gameWindow.Close();
-            _gameWindow = null;
-
-            SplashKit.Delay(2500);
+           
         }
         private void HandleInput()
         {

@@ -15,3 +15,4 @@ E:\Masters\SIT771 - Object-Oriented Development\splashkit\MySplashKitApp\obj\Deb
 E:\Masters\SIT771 - Object-Oriented Development\splashkit\MySplashKitApp\obj\Debug\net9.0\MySplashKitApp.pdb
 E:\Masters\SIT771 - Object-Oriented Development\splashkit\MySplashKitApp\obj\Debug\net9.0\MySplashKitApp.genruntimeconfig.cache
 E:\Masters\SIT771 - Object-Oriented Development\splashkit\MySplashKitApp\obj\Debug\net9.0\ref\MySplashKitApp.dll
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\MySplashKitApp\obj\Debug\net9.0\MySplashKitApp.sourcelink.json
