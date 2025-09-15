@@ -21,11 +21,11 @@ namespace MySplashKitApp
 
         public SpaceGame()
         {
-           // LoadResources();
+            // LoadResources();
             _player = new SpaceShip { X = 300, Y = 300 };
         }
 
-       
+
 
         public void Run()
         {
@@ -38,7 +38,7 @@ namespace MySplashKitApp
             }
             _gameWindow.Close();
             _gameWindow = null;
-           
+
         }
         private void HandleInput()
         {
@@ -54,7 +54,7 @@ namespace MySplashKitApp
                 _player.Move(-5, 0);
             }
             if (SplashKit.KeyDown(KeyCode.RightKey)) _player.Rotate(5);
-              if (SplashKit.KeyDown(KeyCode.LeftKey)) _player.Rotate(-5);
+            if (SplashKit.KeyDown(KeyCode.LeftKey)) _player.Rotate(-5);
         }
         private void Draw()
         {
@@ -66,33 +66,68 @@ namespace MySplashKitApp
 
     public class SpaceShip
     {
-        private double _x, _y,_z;
+        private double _x, _y, _z;
         private double _angle;
         private Bitmap _shipBitmap;
 
+        private ShipType _kind;
+
+        public enum ShipType
+        {
+            Aquarii,
+            Gliese,
+            Pegasi
+        }
         public SpaceShip()
         {
             LoadResources();
             _angle = 270;
-            _shipBitmap = SplashKit.BitmapNamed("Pegasi");
+            ShipKind = ShipType.Aquarii;
         }
-         private void LoadResources()
+        private void LoadResources()
         {
-           SplashKit.LoadBitmap("Aquarii", "Aquarii.png");
-          SplashKit.LoadBitmap("Gliese", "Gliese.png");
+            SplashKit.LoadBitmap("Aquarii", "Aquarii.png");
+            SplashKit.LoadBitmap("Gliese", "Gliese.png");
             SplashKit.LoadBitmap("Pegasi", "Pegasi.png");
         }
-   
+
         public double X
         {
             get { return _x; }
             set { _x = value; }
         }
-
+    public ShipType ShipKind
+        {
+            get { return _kind; }
+            set
+            {
+                _kind = value;
+                SetShipBitmap();        
+            }
+    }
         public double Y
         {
             get { return _y; }
             set { _y = value; }
+
+        }
+        private void SetShipBitmap()
+        {
+            switch (_kind)
+            {
+                case ShipType.Aquarii:
+                    _shipBitmap = SplashKit.BitmapNamed("Aquarii");
+                    break;
+                case ShipType.Gliese:
+                    _shipBitmap = SplashKit.BitmapNamed("Gliese");
+                    break;
+                case ShipType.Pegasi:
+                    _shipBitmap = SplashKit.BitmapNamed("Pegasi");
+                    break;
+                default:
+                    _shipBitmap = SplashKit.BitmapNamed("Aquarii");
+                    break;
+            }
         }
 
         public double Z
@@ -100,6 +135,7 @@ namespace MySplashKitApp
             get { return _z; }
             set { _z = value; }
         }
+
 
         public double Angle
         {
