@@ -55,6 +55,11 @@ namespace MySplashKitApp
             }
             if (SplashKit.KeyDown(KeyCode.RightKey)) _player.Rotate(5);
             if (SplashKit.KeyDown(KeyCode.LeftKey)) _player.Rotate(-5);
+            if (SplashKit.KeyTyped(KeyCode.Num1Key)) _player.ShipKind = SpaceShip.ShipType.Aquarii;
+            if (SplashKit.KeyTyped(KeyCode.Num2Key)) _player.ShipKind = SpaceShip.ShipType.Gliese;
+                if (SplashKit.KeyTyped(KeyCode.Num3Key)) _player.ShipKind = SpaceShip.ShipType.Pegasi;
+
+            
         }
         private void Draw()
         {
