@@ -37,7 +37,7 @@ namespace LightBulb
 
         private void Draw()
         {
-            _simWindow.Clear(Color.White);
+            _simWindow.Clear(_light.IsOn ? Color.White : Color.Black);
             _light.Draw();
             _simWindow.Refresh(60);
         }
@@ -61,6 +61,10 @@ namespace LightBulb
     {
         private double _x, _y;
         private bool _isOn;
+        public bool IsOn
+        {
+            get { return _isOn; }
+        }
 
         public LightBulb(double x, double y)
         {
