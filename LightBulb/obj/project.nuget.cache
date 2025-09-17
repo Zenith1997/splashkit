@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "utf/idd/z9k=",
+  "dgSpecHash": "7Tb6s9PQ04g=",
   "success": true,
   "projectFilePath": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\LightBulb\\LightBulb.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\dabar\\.nuget\\packages\\splashkit\\1.2.12\\splashkit.1.2.12.nupkg.sha512"
+  ],
   "logs": []
 }

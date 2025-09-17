@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace CharacterDrawing1
+namespace LightBulb
 {
      public class Program
     {

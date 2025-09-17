@@ -1,11 +1,41 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "SplashKit/1.2.12": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/SplashKitSDK.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/SplashKitSDK.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SplashKit/1.2.12": {
+      "sha512": "cQKBRNnAW5LF6puCaWqctAkDNyYjJID2CWRrhaFD56D2yjxZdGyTJiObZPL9y0TCqkE4imCwFg8hPfu5kwLJOw==",
+      "type": "package",
+      "path": "splashkit/1.2.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/SplashKitSDK.dll",
+        "lib/net7.0/SplashKitSDK.dll",
+        "lib/net8.0/SplashKitSDK.dll",
+        "lib/net9.0/SplashKitSDK.dll",
+        "readme.md",
+        "splashkit.1.2.12.nupkg.sha512",
+        "splashkit.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "SplashKit >= 1.2.12"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\dabar\\.nuget\\packages\\": {},
@@ -57,6 +87,12 @@
     "frameworks": {
       "net9.0": {
         "targetAlias": "net9.0",
+        "dependencies": {
+          "SplashKit": {
+            "target": "Package",
+            "version": "[1.2.12, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
