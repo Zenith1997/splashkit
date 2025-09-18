@@ -174,3 +174,11 @@ namespace MySplashKitApp
         }
     }
 }
+
+
+//Single Responsibility Principle applied in LightBulb/Program.cs
+//Before refactoring, the LightBulb class handled both the state of the light bulb and the drawing logic.
+//After refactoring, the LightBulb class only manages the state, while the Program class handles drawing and input.
+//This separation of concerns makes the code more maintainable and adheres to the Single Responsibility Principle
+// by ensuring each class has a single reason to change.
+//Single responsibility principla says that a class should have only one reason to change, meaning it should only have one job or responsibility.
