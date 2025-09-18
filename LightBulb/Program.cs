@@ -14,11 +14,14 @@ namespace LightBulb
     public class LightSimulator
     {
         private Window _simWindow;
+
         private LightBulb _light;
+        //adding a LightSwitch instance
         private LightSwitch _lightSwitch;
         public LightSimulator()
         {
             _light = new LightBulb(10, 10);
+            //initializing the LightSwitch instance and connecting it to the LightBulb
             _lightSwitch = new LightSwitch{ X = 250, Y = 400, ConnectedLight = _light };
 
         }
@@ -42,6 +45,7 @@ namespace LightBulb
         {
             _simWindow.Clear(_light.IsOn ? Color.Yellow : Color.Gray);
             _light.Draw();
+            //drawing the LightSwitch
             _lightSwitch.Draw();
             _simWindow.Refresh(60);
         }
@@ -51,6 +55,7 @@ namespace LightBulb
 
          if(_lightSwitch.IsUnderMouse && SplashKit.MouseClicked(MouseButton.LeftButton))
             {
+                //toggling the switch and the connected light
                 _lightSwitch.Switch();
             }
         }
