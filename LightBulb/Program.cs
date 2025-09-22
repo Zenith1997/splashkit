@@ -16,6 +16,7 @@ namespace LightBulb
         private Window _simWindow;
 
         private LightBulb _light;
+        private LightBulb light1;
         //adding a LightSwitch instance
         private LightSwitch _lightSwitch;
         private LightSwitch _lightSwitch1;
@@ -23,6 +24,7 @@ namespace LightBulb
         public LightSimulator()
         {
             _light = new LightBulb(10, 10);
+            light1 = new LightBulb(300, 10);
             //initializing the LightSwitch instance and connecting it to the LightBulb
             _lightSwitch = new LightSwitch { X = 250, Y = 400, ConnectedLight = _light };
             _lightSwitch1 = new LightSwitch { X = 350, Y = 400, ConnectedLight = _light };
@@ -48,8 +50,9 @@ namespace LightBulb
 
         private void Draw()
         {
-            _simWindow.Clear(_light.IsOn ? Color.Yellow : Color.Gray);
+            _simWindow.Clear( Color.Gray);
             _light.Draw();
+            light1.Draw();
             //drawing the LightSwitch
             _lightSwitch.Draw();
             _lightSwitch1.Draw();
@@ -63,6 +66,9 @@ namespace LightBulb
             CheckSwitch(_lightSwitch);
             CheckSwitch(_lightSwitch1);
             CheckSwitch(_lightSwitch2);
+            CheckLight(_light);
+            CheckLight(light1);
+         
         }
          private void CheckSwitch( LightSwitch lightSwitch) 
         {
@@ -71,6 +77,25 @@ namespace LightBulb
                 lightSwitch.Switch();
             }
         }
+  private void CheckLight(LightBulb toCheck)
+        {
+            if (toCheck.IsUnderMouse )
+            {
+                if (SplashKit.KeyDown(KeyCode.Num1Key))
+                {
+                  _lightSwitch.ConnectedLight = toCheck;
+                }
+                else if (SplashKit.KeyDown(KeyCode.Num2Key))
+                {
+                  _lightSwitch1.ConnectedLight = toCheck;
+                }
+                else if (SplashKit.KeyDown(KeyCode.Num3Key)) 
+                {
+                  _lightSwitch2.ConnectedLight = toCheck;
+                }
+            }
+        }
+
 
         private void LoadResources()
         {
@@ -121,6 +146,10 @@ namespace LightBulb
         public Bitmap Image
         {
             get { return SplashKit.BitmapNamed(_isOn ? "On" : "Off"); }
+        }
+           public bool IsUnderMouse
+        {
+            get { return Image.PointCollision(_x, _y, SplashKit.MouseX(), SplashKit.MouseY()); }
         }
 
         public void Draw()
