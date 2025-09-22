@@ -1,3 +1,6 @@
+using System;
+using SplashKitSDK;
+
 namespace ChatProgram
 {
     public class ChatPeer
@@ -7,37 +10,38 @@ namespace ChatProgram
         public ChatPeer(ushort port)
         {
             _server = new ServerSocket("ChatServer", port);
-        }
 
-        public void ConnectToPeer(string address, ushort port)
+        }
+      public void ConnectToPeer(string address, ushort port)
         {
-            if (newConnecton.IsOpen)
+            Connection newConnection = new Connection($"{address}:{port}", address, port);
+            if ( newConnection.IsOpen )
             {
-                Console.WriteLine($"Connection to {address}:{port} successful");
-                newConnection.SendMessage("Hello from " + _server.Port);
-            }
-            else
-            {
-                Console.WriteLine($"Connection to {address}:{port} failed");
+                Console.WriteLine($"Connected to {address}:{port}");
             }
         }
 
-        public void BroadcastMessage(string message)
+
+
+        public void Broadcast(string message)
         {
-            Splashkit.BroadcastMessage(message);
+            SplashKit.BroadcastMessage(message);
         }
+
         public void PrintNewMessages()
         {
-            Splashkit.CheckNetworkActivity();
-            while (Splashkit.HasNewMessage())
+            SplashKit.CheckNetworkActivity();
+            while (SplashKit.HasMessages())
             {
                 using (Message m = SplashKit.ReadMessage())
                 {
-                    Console.WriteLine($"Message from {m.Host}: {m.Port}");
-                    Console.ReadLine(m.Data);
+                    Console.WriteLine($"Got a message from {m.Host}:{m.Port}");
+                    Console.WriteLine($"Message: {m.Data}");
                 }
             }
+
         }
+
         public void Close()
         {
             _server.Close();

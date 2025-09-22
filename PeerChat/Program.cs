@@ -1,15 +1,11 @@
 ﻿using System;
 using SplashKitSDK;
 
-
 namespace ChatProgram
 {
-
-
-
     public class Program
     {
-
+      
         private static void PrintMenu()
         {
             Console.WriteLine("1: Broadcast message");
@@ -17,15 +13,15 @@ namespace ChatProgram
             Console.WriteLine("3: Check Messages");
             Console.WriteLine("4: Quit");
         }
- private static void BroadcastMessage(ChatPeer peer)
+
+              private static void BroadcastMessage(ChatPeer peer)
         {
             Console.Write("What message do you want to send: ");
             string message = Console.ReadLine();
             peer.Broadcast(message);
         }
 
-
-        private static void MakeNewConnection(ChatPeer peer)
+               private static void MakeNewConnection(ChatPeer peer)
         {
             string address;
             ushort port;
@@ -38,10 +34,10 @@ namespace ChatProgram
 
             peer.ConnectToPeer(address, port);
         }
-         public static void Main( string [] args )
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Peer Chat!");
-            Console.WriteLine("Which port do you want to use?");
+            Console.Write("Which port: ");
             ushort port = Convert.ToUInt16(Console.ReadLine());
             ChatPeer peer = new ChatPeer(port);
 
@@ -50,6 +46,7 @@ namespace ChatProgram
             {
                 PrintMenu();
                 opt = Convert.ToInt32(Console.ReadLine());
+
                 switch (opt)
                 {
                     case 1:
@@ -69,10 +66,6 @@ namespace ChatProgram
                         break;
                 }
             } while (opt != 4);
-
-
         }
-
-
     }
 }
