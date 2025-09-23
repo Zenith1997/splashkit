@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jon Meyers" />
+    <meta name="author" content="Andrew Cain" />
+    <title>SplashKit Message of the Moment!</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Message of the Moment</h1>
+            <p class="lead" id="msg"></p>
+            <button type="button" class="btn btn-default" id="load">Load</button>
+        </div>
+        <div class="row">
+            <h1>Set Message</h1>
+            <form id="form">
+                <div class="form-group">
+                    <input class="form-control" type="text" id="message" placeholder="New message" />
+                </div>
+                <button type="button" class="btn btn-default" id="sub">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            load_message = function () {
+                var content = document.getElementById("msg");
+                content.innerHTML = null;
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                        if (xmlhttp.status == 200) {
+                            content.append(xmlhttp.response);
+                        } else {
+                            alert('There was an error ' + xmlhttp.status);
+                        }
+                    }
+                };
+                xmlhttp.open("GET", "http://localhost:8080/message", true);
+                xmlhttp.send();
+            };
+
+            load_message();
+
+            var loadButton = document.getElementById('load');
+            loadButton.addEventListener("click", function () {
+                load_message();
+            });
+
+            var submitButton =  document.getElementById('sub')
+            submitButton.addEventListener("click", function () {
+                var message = document.getElementById('message').value;
+                console.log(message);
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                        if (xmlhttp.status == 200 || xmlhttp.status == 204) {
+                            load_message();
+                            document.getElementById('form')[0].innerHTML = null;
+                            console.log(`Successfully added message!`);
+                        } else {
+                            alert('There was an error ' + xmlhttp.status);
+                        }
+                    };
+                };
+                xmlhttp.open("PUT", "http://localhost:8080/message", true);
+                xmlhttp.send(message)
+            });
+        };
+    </script>
+</body>
+
+</html>
