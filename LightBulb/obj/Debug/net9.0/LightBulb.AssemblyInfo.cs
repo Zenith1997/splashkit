@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LightBulb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c873a2a4210e1316dd656297795f53567443862")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee378d3e9ff87c61f5727544649bec01da6a85c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("LightBulb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LightBulb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
