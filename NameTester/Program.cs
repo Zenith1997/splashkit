@@ -47,7 +47,7 @@ namespace NameTester
 
         public static MenuOption ReadUserOption()
         {
-            int option;
+            int option ;
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("1 will run Test");
             Console.WriteLine("2 will play Guess that Number");

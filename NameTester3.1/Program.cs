@@ -58,6 +58,11 @@ class Program
                 option = -1;
             }
 
+            if (option < 1 || option > 3)
+            {
+                Console.WriteLine("Invalid option. Please enter a number between 1 and 3.");
+            }
+
         } while (option < 1 || option > 3);
 
         return (MenuOption)(option - 1);
@@ -135,6 +140,11 @@ class Program
             {
                 Console.WriteLine("Invalid input. Enter a number.");
                 guess = -1;
+            }
+
+            if (guess < min || guess > max)
+            {
+                Console.WriteLine($"Invalid guess. Please enter a number between {min} and {max}.");
             }
 
         } while (guess < min || guess > max);
