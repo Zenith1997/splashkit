@@ -1,19 +1,24 @@
-﻿using System;
-using System.Security.Principal;
-using SplashKitSDK;
+﻿using SplashKitSDK;
 
-
-namespace RobotDodge{
-
-
-public class Program
+namespace RobotDodge
 {
-    public static void Main(string[] args)
+    public class Program
     {
-      Window myWindow = new Window("Game",500,500);
-      Player player = new Player(myWindow);
-      player.Draw();
-      myWindow.Refresh(60);
-      SplashKit.Delay(5000);
+        public static void Main()
+        {
+            Window gameWindow = new Window("Robot Dodge", 800, 600);
+            RobotDodge game = new RobotDodge(gameWindow);
+
+            while (!game.Quit && !gameWindow.CloseRequested)
+            {
+                SplashKit.ProcessEvents();
+
+                game.HandleInput();
+                game.Update();
+                game.Draw();
+            }
+
+            gameWindow.Close();
+        }
     }
-}}
+}

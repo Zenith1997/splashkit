@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MakeAScence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee378d3e9ff87c61f5727544649bec01da6a85c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d0252b034c164af97cf16561226cc1d92c7630c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MakeAScence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MakeAScence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
