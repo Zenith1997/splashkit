@@ -1,12 +1,15 @@
 using System;
+using System.Transactions;
 
 public class Bank
 {
     private List<Account> _accounts;
+    private List <Transaction> _transactions;
 
     public Bank()
     {
         _accounts = new List<Account>();
+        _transactions = new List<Transaction>();
     }
 
     public void AddAccount(Account account)
@@ -29,18 +32,19 @@ public class Bank
         return null;
     }
 
-    public void ExecuteTransaction(WithdrawTransaction transaction)
+    public void ExecuteTransaction(Transaction transaction)
     {
+        this._transactions.Add(transaction);
         transaction.Execute();
     }
-    .
-    public void ExecuteTransaction(TransferTransaction transaction)
+
+    public void TransactionHistory()
     {
-      transaction.Execute();
+        foreach(Transaction transaction in _transactions)
+        {
+            transaction.Print();
+        }
     }
-    public void ExecuteTransaction(DepositTransaction transaction)
-    {
-      transaction.Execute();
-    }
+    
 }
 

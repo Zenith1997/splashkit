@@ -8,6 +8,8 @@ public enum MenuOption
     Withdraw,
     Transfer,
     Print,
+
+    Print_Transactions,
     Quit
 }
 
@@ -45,6 +47,9 @@ public class Program
                 case MenuOption.Print:
                     DoPrint(bank);
                     break;
+                case MenuOption.Print_Transactions:
+                    bank.TransactionHistory();
+                    break;
 
                 case MenuOption.Quit:
                     Console.WriteLine("Goodbye!");
@@ -69,7 +74,8 @@ public class Program
             Console.WriteLine("3. Withdraw");
             Console.WriteLine("4. Transfer");
             Console.WriteLine("5. Print");
-            Console.WriteLine("6. Quit");
+            Console.WriteLine("6. Print transaction history");
+            Console.WriteLine("7. Quit");
             Console.Write("Choose an option [1-6]: ");
 
             try
@@ -190,7 +196,7 @@ public class Program
         {
             return;
         }
-if(fromAccount==toAccount){throw new Exception("same account");}
+        if (fromAccount == toAccount) { throw new Exception("same account"); }
         Console.Write("Enter amount to transfer: ");
 
         try

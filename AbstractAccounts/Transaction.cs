@@ -2,8 +2,6 @@
 using System;
 public abstract class Transaction
 {
-    
- private Account _account;
     protected decimal _amount;
     protected bool _executed;
 
@@ -17,7 +15,7 @@ public abstract class Transaction
 
 
     }
-    
+
     public bool Reversed
     {
         get { return this._reversed; }
@@ -41,7 +39,7 @@ public abstract class Transaction
 
     public virtual void Print()
     {
-        
+
         Console.WriteLine(this.DateStamp);
     }
 
@@ -52,15 +50,16 @@ public abstract class Transaction
             throw new Exception("Transaction already executed");
         }
         this._executed = true;
-        this._dateStamp = DateTime.Now; 
+        this._dateStamp = DateTime.Now;
     }
-     public virtual void Rollback()
+    public virtual void Rollback()
     {
-        if(!this._executed){
+        if (!this._executed)
+        {
             throw new Exception("Rollback declined.Transaction never happened thus cannot rollback");
 
         }
-if(this._reversed)
+        if (this._reversed)
         {
             throw new Exception("Rollback declined.Transaction already reversed");
         }

@@ -1,108 +1,97 @@
-using System.Transactions;
 using System;
 
-public class TransferTransaction:Transaction
+public class TransferTransaction : Transaction
 {
     private Account _fromAccount;
     private Account _toAccount;
-      private WithdrawTransaction _withdraw;
+
+    private WithdrawTransaction _withdraw;
     private DepositTransaction _deposit;
 
     public override bool Success
     {
-        get { return this._withdraw.Success &&  this._deposit.Success; }
+        get { return _withdraw.Success && _deposit.Success; }
     }
 
-    public bool Executed
+    public TransferTransaction(Account fromAccount, Account toAccount, decimal amount)
+        : base(amount)
     {
-        get { return _executed; }
-    }
-
-    public bool Reversed
-    {
-        get { return _reversed; }
-    }
-
-    public TransferTransaction(Account fromAccount, Account toAccount, decimal amount):base(amount)
-    {
-     
-
         _fromAccount = fromAccount;
         _toAccount = toAccount;
-        _amount = amount;
+
         _withdraw = new WithdrawTransaction(_fromAccount, _amount);
         _deposit = new DepositTransaction(_toAccount, _amount);
-        _executed = false;
-        _reversed = false;
     }
 
-    public void Execute()
+    public override void Execute()
     {
-           base.Execute();
+        base.Execute();
 
-    
+        _withdraw.Execute();
 
-        
+        if (!_withdraw.Success)
+        {
+            throw new Exception("Transfer failed. Withdraw was not successful.");
+        }
 
-       this. _withdraw.Execute();
-
-        if (this._withdraw.Success)
+        try
         {
             _deposit.Execute();
-            if (_deposit.Success)
+
+            if (!_deposit.Success)
             {
-                _executed=true;
+                _withdraw.Rollback();
+                throw new Exception("Transfer failed. Deposit was not successful.");
             }
-            else
+        }
+        catch
+        {
+            if (_withdraw.Success && !_withdraw.Reversed)
             {
                 _withdraw.Rollback();
             }
-        }
-        else
-        {
-            throw new Exception("Can not execute.The withdraw was not successful");
+
+            throw;
         }
     }
 
-    public void Rollback()
+    public override void Rollback()
     {
-      
-        if (_deposit.Success)
+        base.Rollback();
+
+        if (!Success)
         {
-            _deposit.Rollback();
+            throw new Exception("Cannot rollback. Transfer was not successful.");
         }
 
-        if (_withdraw.Success)
-        {
-            _withdraw.Rollback();
-        }
+        _deposit.Rollback();
+        _withdraw.Rollback();
 
-        if (_withdraw.Reversed && _deposit.Reversed)
+        if (_deposit.Reversed && _withdraw.Reversed)
         {
-            _reversed=true;
-            _executed=false;
+            _reversed = true;
+        }
+        else
+        {
+            throw new Exception("Transfer rollback failed.");
         }
     }
 
     public override void Print()
-
     {
-        if(_withdraw.Success&& _deposit.Success)
-        {
-        Console.WriteLine($"Transferred {_amount} from {_fromAccount.Name} to {_toAccount.Name}");
-        Console.Write("   ");
+        Console.WriteLine("Transfer Transaction");
+        Console.WriteLine($"From: {_fromAccount.Name}");
+        Console.WriteLine($"To: {_toAccount.Name}");
+        Console.WriteLine($"Amount: {_amount}");
+        Console.WriteLine($"Success: {Success}");
+        Console.WriteLine($"Executed: {_executed}");
+        Console.WriteLine($"Reversed: {_reversed}");
+        Console.WriteLine($"Date: {DateStamp}");
+
+        Console.WriteLine();
         _withdraw.Print();
-        Console.Write("   ");
+
+        Console.WriteLine();
         _deposit.Print();
-            
-        }
-        else
-        {
-            Console.WriteLine("transfer was not successful");
-            if (_reversed)
-            {
-                Console.WriteLine("transfer was reversed");
-            }
-        }
     }
 }

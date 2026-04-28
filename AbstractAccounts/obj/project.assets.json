@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\ManyAccounts\\ManyAccounts.csproj",
+      "projectUniqueName": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\AbstractAccounts\\ManyAccounts.csproj",
       "projectName": "ManyAccounts",
-      "projectPath": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\ManyAccounts\\ManyAccounts.csproj",
+      "projectPath": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\AbstractAccounts\\ManyAccounts.csproj",
       "packagesPath": "C:\\Users\\dabar\\.nuget\\packages\\",
-      "outputPath": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\ManyAccounts\\obj\\",
+      "outputPath": "E:\\Masters\\SIT771 - Object-Oriented Development\\splashkit\\AbstractAccounts\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
