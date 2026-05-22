@@ -9,7 +9,8 @@ public class RobotDodgee
     private Bitmap _heart;
     private Window gameWindow;
     private SplashKitSDK.Timer _Timer;
-    private List<Robot> _Robots;
+    private List<Robot> 
+    _Robots;
     private List<Bullet> _Bullets;
     private int lives = 5;
     private bool gameOver = false;

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PeerChat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbeda1a8e6e1d8004db530842c3361fac81b9057")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51657eae0f0c53d7104bef38b867853569474a85")]
 [assembly: System.Reflection.AssemblyProductAttribute("PeerChat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PeerChat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
