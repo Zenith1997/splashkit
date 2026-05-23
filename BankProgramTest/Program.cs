@@ -1,4 +1,8 @@
-﻿namespace BankProgramTest{
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Transactions;
+using BankProgramTest;
+
+namespace BankProgramTest{
 
 
 
@@ -8,6 +12,16 @@ public enum MenuOption
         Withdraw,
         Print,
         Quit
+    }
+
+public enum DepositOption
+    {
+        
+        FIVEHUNDRED,
+        THOUSAND,
+        TWOTHOUSAND,
+
+        Other
     }
 
 public class Program()
@@ -30,24 +44,76 @@ MenuOption menuOption;
                 switch (menuOption)
                 {
                     case MenuOption.Deposit:
-                    acc.Deposit();
+                    DoDeposit(acc);
                     break;
                     case MenuOption.Withdraw:
-                    acc.Withdraw();
+                    //
                     break;
                     case MenuOption.Print:
                     acc.Print();
                     break;
                     case MenuOption.Quit:
                     Console.WriteLine("Thank you for using Zenith bank services. Have a nice day!");
+                    break;
                      
                 }
 
             }
     while(menuOption!=(MenuOption.Quit));
-
-
     }
+
+
+    public static void DoDeposit(Account account)
+        {
+            DepositOption    userOption;
+
+            do
+            {
+                
+         userOption = ReadDepositOption();
+
+
+           switch (userOption)
+                {
+                    case DepositOption.FIVEHUNDRED:
+                        account.Deposit(500);
+                        break;
+                    case DepositOption.THOUSAND:
+                        account.Deposit(1000);
+                        break;
+                    case DepositOption.TWOTHOUSAND:
+                        account.Deposit(2000);
+                        break;
+                }
+            }
+            while(userOption!=(DepositOption.Other));
+   {
+                int opt =-1;
+            do{
+         
+                   Console.WriteLine("Enter the amount to deposit:");
+            try
+            {
+                
+            decimal amount = Convert.ToInt32(Console.ReadLine());
+               account.Deposit(amount);
+opt = 1;
+    
+            }  
+            catch (Exception)
+            {
+                Console.WriteLine("Enter a valid number");
+          opt = -1;
+            }
+
+            }while(opt<1);
+         
+         
+
+   }}
+
+
+    
 
     private static MenuOption ReadUserOption()
         {
@@ -89,6 +155,48 @@ MenuOption menuOption;
             //returns the enum by casting an enum to the options integer 
             return (MenuOption)(option - 1);
         }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+ private static DepositOption ReadDepositOption()
+        {
+            int option;
+            do
+            {
+                Console.Write("Select an option from below");
+                Console.WriteLine("[1]:500");
+                Console.WriteLine("[2]:1000");
+                Console.WriteLine("[3]:2000");
+                Console.WriteLine("[4]:Other");
+                try
+                {
+                    option=Convert.ToInt32(Console.ReadLine());
+                    if (option < 1 || option > 4)
+                    {
+                        throw new Exception("Number out of range");
+                    }
+                }
+                catch (Exception )
+                {
+                    Console.WriteLine($"Choose from 1-4,");
+                    option = -1;
+                }
+              
+
+                      return (DepositOption)(option - 1);
+                
+            }while(option!=4);
 }
 
+
+}
+}
