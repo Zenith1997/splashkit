@@ -96,7 +96,7 @@ MenuOption menuOption;
             {
                 
             decimal amount = Convert.ToInt32(Console.ReadLine());
-               account.Deposit(amount);
+               account.Withdraw(amount);
 opt = 1;
     
             }  
