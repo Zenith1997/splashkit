@@ -2,11 +2,12 @@
 using System.Transactions;
 using BankProgramTest;
 
-namespace BankProgramTest{
+namespace BankProgramTest
+{
 
 
 
-public enum MenuOption
+    public enum MenuOption
     {
         Deposit,
         Withdraw,
@@ -14,9 +15,9 @@ public enum MenuOption
         Quit
     }
 
-public enum WithdrawOptions
+    public enum WithdrawOptions
     {
-        
+
         FIVEHUNDRED,
         THOUSAND,
         TWOTHOUSAND,
@@ -24,103 +25,112 @@ public enum WithdrawOptions
         Other
     }
 
-public class Program()
+    public class Program()
 
 
-{
-    
-
-
-    public static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to Zenith Bank");
 
-        Account acc = new Account("Zenith",5000);
-MenuOption menuOption;
+
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Zenith Bank");
+
+            Account acc = new Account("Zenith", 5000);
+            MenuOption menuOption;
             do
             {
-              menuOption=  ReadUserOption();
+                menuOption = ReadUserOption();
 
                 switch (menuOption)
                 {
                     case MenuOption.Deposit:
-                    DoDeposit(acc);
-                    break;
+                        DoDeposit(acc);
+                        break;
                     case MenuOption.Withdraw:
-                    DoWithdraw(acc);
-                    break;
+                        DoWithdraw(acc);
+                        break;
                     case MenuOption.Print:
-                    acc.Print();
-                    break;
+                        acc.Print();
+                        break;
                     case MenuOption.Quit:
-                    Console.WriteLine("Thank you for using Zenith bank services. Have a nice day!");
-                    break;
-                     
+                        Console.WriteLine("Thank you for using Zenith bank services. Have a nice day!");
+                        break;
+
                 }
 
             }
-    while(menuOption!=(MenuOption.Quit));
-    }
+            while (menuOption != (MenuOption.Quit));
+        }
 
 
-    public static void DoWithdraw(Account account)
+        public static void DoWithdraw(Account account)
         {
-            WithdrawOptions    userOption;
+            WithdrawOptions userOption;
 
             do
             {
-                
-         userOption = ReadWithdrawOption();
+
+                userOption = ReadWithdrawOption();
 
 
-           switch (userOption)
+                switch (userOption)
                 {
                     case WithdrawOptions.FIVEHUNDRED:
-                        account.Deposit(500);
+                        account.Withdraw(500);
                         break;
                     case WithdrawOptions.THOUSAND:
-                        account.Deposit(1000);
+                        account.Withdraw(1000);
                         break;
                     case WithdrawOptions.TWOTHOUSAND:
-                        account.Deposit(2000);
+                        account.Withdraw(2000);
                         break;
                 }
             }
-            while(userOption!=(WithdrawOptions.Other));
-   {
-                int opt =-1;
-            do{
-         
-                   Console.WriteLine("Enter the amount to withdraw:");
-            try
+            while (userOption != (WithdrawOptions.Other));
             {
-                
-            decimal amount = Convert.ToInt32(Console.ReadLine());
-               account.Withdraw(amount);
-opt = 1;
-    
-            }  
-            catch (Exception)
-            {
-                Console.WriteLine("Enter a valid number");
-          opt = -1;
+                int opt = -1;
+                do
+                {
+
+                    Console.WriteLine("Enter the amount to withdraw:");
+                    try
+                    {
+
+                        decimal amount = Convert.ToInt32(Console.ReadLine());
+                        account.Withdraw(amount);
+                        opt = 1;
+
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Enter a valid number");
+                        opt = -1;
+                    }
+
+                } while (opt < 1);
+
+
+
             }
-
-            }while(opt<1);
-         
-         
-
-   }}
+        }
 
 
-    
+public static void DoDeposit(Account account)
+        {
+            Console.WriteLine("Enter the amount to deposit");
+            decimal amount = Convert.ToDecimal(Console.ReadLine());
 
-    private static MenuOption ReadUserOption()
+            account.Deposit(amount);
+        }
+
+
+        private static MenuOption ReadUserOption()
         {
             int option;
-           
-               Console.Write("Choose an option [1-4]: ");
-              Console.WriteLine();
+
+            Console.Write("Choose an option [1-4]: ");
+            Console.WriteLine();
             Console.WriteLine("************************");
             Console.WriteLine("*      BANK MENU       *");
             Console.WriteLine("************************");
@@ -128,18 +138,18 @@ opt = 1;
             Console.WriteLine("2. Withdraw");
             Console.WriteLine("3. Print");
             Console.WriteLine("4. Quit");
-           
 
-   try
-{
-    option = Convert.ToInt32(Console.ReadLine());
 
-    if (option < 1 || option > 4)
-    {
-        //Stop the normal path here. Something invalid happened. Send control to the matching catch
-        throw new Exception("Number out of range.");
-    }
-}
+            try
+            {
+                option = Convert.ToInt32(Console.ReadLine());
+
+                if (option < 1 || option > 4)
+                {
+                    //Stop the normal path here. Something invalid happened. Send control to the matching catch
+                    throw new Exception("Number out of range.");
+                }
+            }
             catch (FormatException)
             {
                 Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
@@ -167,36 +177,36 @@ opt = 1;
 
 
 
- private static WithdrawOptions ReadWithdrawOption()
+        private static WithdrawOptions ReadWithdrawOption()
         {
             int option;
             do
             {
-                Console.Write("Select an option from below");
+                Console.WriteLine("Select an option from below");
                 Console.WriteLine("[1]:500");
                 Console.WriteLine("[2]:1000");
                 Console.WriteLine("[3]:2000");
                 Console.WriteLine("[4]:Other");
                 try
                 {
-                    option=Convert.ToInt32(Console.ReadLine());
+                    option = Convert.ToInt32(Console.ReadLine());
                     if (option < 1 || option > 4)
                     {
                         throw new Exception("Number out of range");
                     }
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     Console.WriteLine($"Choose from 1-4,");
                     option = -1;
                 }
-              
-
-                      return (DepositOption)(option - 1);
-                
-            }while(option!=4);
-}
 
 
-}
+                return (WithdrawOptions)(option - 1);
+
+            } while (option != 4);
+        }
+
+
+    }
 }

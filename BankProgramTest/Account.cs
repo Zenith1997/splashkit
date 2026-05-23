@@ -21,7 +21,19 @@ namespace BankProgramTest
 
         public void Withdraw( decimal amount)
         {
-            this._balance=amount;
+              this._balance-=amount;
+            if (_balance < 500)
+            {
+                Console.WriteLine("Withdrawal3 declined. Balance should be more than 500.");
+                this._balance +=amount;
+            }
+            else
+            {
+                Console.WriteLine($"{amount} withdrawn successfully");
+            } 
+            
+          
+            
         }
 
         public void Deposit( decimal amount)
