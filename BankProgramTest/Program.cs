@@ -167,7 +167,7 @@ opt = 1;
 
 
 
- private static DepositOption ReadWithdrawOption()
+ private static WithdrawOptions ReadWithdrawOption()
         {
             int option;
             do
