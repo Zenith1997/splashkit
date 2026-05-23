@@ -14,7 +14,7 @@ public enum MenuOption
         Quit
     }
 
-public enum DepositOption
+public enum WithdrawOptions
     {
         
         FIVEHUNDRED,
@@ -47,7 +47,7 @@ MenuOption menuOption;
                     DoDeposit(acc);
                     break;
                     case MenuOption.Withdraw:
-                    //
+                    DoWithdraw(acc);
                     break;
                     case MenuOption.Print:
                     acc.Print();
@@ -63,35 +63,35 @@ MenuOption menuOption;
     }
 
 
-    public static void DoDeposit(Account account)
+    public static void DoWithdraw(Account account)
         {
-            DepositOption    userOption;
+            WithdrawOptions    userOption;
 
             do
             {
                 
-         userOption = ReadDepositOption();
+         userOption = ReadWithdrawOption();
 
 
            switch (userOption)
                 {
-                    case DepositOption.FIVEHUNDRED:
+                    case WithdrawOptions.FIVEHUNDRED:
                         account.Deposit(500);
                         break;
-                    case DepositOption.THOUSAND:
+                    case WithdrawOptions.THOUSAND:
                         account.Deposit(1000);
                         break;
-                    case DepositOption.TWOTHOUSAND:
+                    case WithdrawOptions.TWOTHOUSAND:
                         account.Deposit(2000);
                         break;
                 }
             }
-            while(userOption!=(DepositOption.Other));
+            while(userOption!=(WithdrawOptions.Other));
    {
                 int opt =-1;
             do{
          
-                   Console.WriteLine("Enter the amount to deposit:");
+                   Console.WriteLine("Enter the amount to withdraw:");
             try
             {
                 
@@ -167,7 +167,7 @@ opt = 1;
 
 
 
- private static DepositOption ReadDepositOption()
+ private static DepositOption ReadWithdrawOption()
         {
             int option;
             do
