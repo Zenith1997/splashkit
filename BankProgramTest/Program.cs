@@ -1,9 +1,8 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using System.Transactions;
-using BankProgramTest;
 
-namespace BankProgramTest
-{
+
+
 
 
 
@@ -98,7 +97,8 @@ namespace BankProgramTest
                     {
 
                         decimal amount = Convert.ToInt32(Console.ReadLine());
-                        account.Withdraw(amount);
+                             WithdrawTransaction  transaction = new WithdrawTransaction(account,amount);
+                          transaction.Execute();
                         opt = 1;
 
                     }
@@ -121,7 +121,8 @@ public static void DoDeposit(Account account)
             Console.WriteLine("Enter the amount to deposit");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
 
-            account.Deposit(amount);
+           DepositTransaction  transaction = new DepositTransaction(account,amount);
+           transaction.Execute();
         }
 
 
@@ -209,4 +210,4 @@ public static void DoDeposit(Account account)
 
 
     }
-}
+

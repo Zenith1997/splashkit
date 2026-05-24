@@ -1,5 +1,4 @@
-namespace BankProgramTest
-{
+
     public class Account
     {
         private decimal _balance;
@@ -19,26 +18,27 @@ namespace BankProgramTest
 
         public string Name{get {return _name;}}
 
-        public void Withdraw( decimal amount)
+        public bool Withdraw( decimal amount)
         {
               this._balance-=amount;
             if (_balance < 500)
             {
-                Console.WriteLine("Withdrawal3 declined. Balance should be more than 500.");
-                this._balance +=amount;
+                Console.WriteLine("Withdrawal declined. Balance should be more than 500.");
+                return false;
             }
             else
             {
                 Console.WriteLine($"{amount} withdrawn successfully");
+                return true;
             } 
             
           
             
         }
 
-        public void Deposit( decimal amount)
+        public bool Deposit( decimal amount)
         {
             this._balance+=amount;
+            return true;
         }
     }
-}
