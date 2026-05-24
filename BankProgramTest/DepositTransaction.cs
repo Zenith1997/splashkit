@@ -17,7 +17,10 @@ public class DepositTransaction
     }
 
 
-
+    public void Print()
+    {
+        Console.WriteLine($"{this._amount} is deposited to account {this._account.Name}");
+    }
 
 
 

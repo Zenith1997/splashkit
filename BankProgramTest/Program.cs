@@ -11,6 +11,7 @@ using System.Transactions;
         Deposit,
         Withdraw,
         Print,
+        History,
         Quit
     }
 
@@ -30,12 +31,13 @@ using System.Transactions;
     {
 
 
-
         public static void Main(string[] args)
         {
+           List<DepositTransaction> depositTransactions = new List<DepositTransaction>();
             Console.WriteLine("Welcome to Zenith Bank");
 
             Account acc = new Account("Zenith", 5000);
+            
             MenuOption menuOption;
             do
             {
@@ -44,13 +46,16 @@ using System.Transactions;
                 switch (menuOption)
                 {
                     case MenuOption.Deposit:
-                        DoDeposit(acc);
+                        DoDeposit(acc,depositTransactions);
                         break;
                     case MenuOption.Withdraw:
                         DoWithdraw(acc);
                         break;
                     case MenuOption.Print:
                         acc.Print();
+                        break;
+                    case MenuOption.History:
+                        DoHistory(depositTransactions);
                         break;
                     case MenuOption.Quit:
                         Console.WriteLine("Thank you for using Zenith bank services. Have a nice day!");
@@ -62,6 +67,13 @@ using System.Transactions;
             while (menuOption != (MenuOption.Quit));
         }
 
+        public static void DoHistory(List<DepositTransaction> depositTransactions)
+    {
+        foreach(DepositTransaction deposit in depositTransactions)
+        {
+            deposit.Print();
+        }
+    }
 
         public static void DoWithdraw(Account account)
         {
@@ -116,12 +128,13 @@ using System.Transactions;
         }
 
 
-public static void DoDeposit(Account account)
+public static void DoDeposit(Account account, List<DepositTransaction> depositTransactions)
         {
             Console.WriteLine("Enter the amount to deposit");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
 
            DepositTransaction  transaction = new DepositTransaction(account,amount);
+           depositTransactions.Add(transaction);
            transaction.Execute();
         }
 
@@ -138,7 +151,8 @@ public static void DoDeposit(Account account)
             Console.WriteLine("1. Deposit");
             Console.WriteLine("2. Withdraw");
             Console.WriteLine("3. Print");
-            Console.WriteLine("4. Quit");
+             Console.WriteLine("4. History");
+            Console.WriteLine("5. Quit");
 
 
             try
