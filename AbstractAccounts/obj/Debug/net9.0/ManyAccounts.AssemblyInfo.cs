@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ManyAccounts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8cd45c57908e273142c58ae870d9087ffff8faf9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9b12e6df0191321bb9c844d3b0b41bca4663981")]
 [assembly: System.Reflection.AssemblyProductAttribute("ManyAccounts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ManyAccounts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
