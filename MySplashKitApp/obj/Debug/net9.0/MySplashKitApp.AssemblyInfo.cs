@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MySplashKitApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9b12e6df0191321bb9c844d3b0b41bca4663981")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c53b3355770fd9ce86b020118ac2419cb0ffdac")]
 [assembly: System.Reflection.AssemblyProductAttribute("MySplashKitApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MySplashKitApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
