@@ -1,0 +1,58 @@
+## Visual Studio / .NET generated files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Build artifacts
+[Bb]in/
+[Oo]bj/
+**/bin/
+**/obj/
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+## Rider / ReSharper
+.idea/
+*.sln.iml
+_ReSharper*/
+*.DotSettings.user
+
+## Test results
+TestResults/
+*.trx
+
+## Coverage and profiling
+coverage/
+*.coverage
+*.coveragexml
+
+## VS Code workspace settings
+.vscode/
+
+## OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+## Logs
+*.log
+
+## Others
+node_modules/
+client/node_modules/
+.cache/
+
+# Exclude publish output
+publish/
+bin-publish/

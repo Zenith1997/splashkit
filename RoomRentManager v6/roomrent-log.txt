@@ -1,1 +1,15 @@
 --- RoomRent Manager session started at 2026-05-28 17:02:12 ---
+--- RoomRent Manager session started at 2026-05-28 17:49:25 ---
+2026-05-28 17:49:38 | House added: 1 Cruisenplace, Armstrongcreek
+2026-05-28 17:49:49 | House added: 67 Compassway, Belmont
+2026-05-28 17:50:01 | House added: 151 Minerva road, Newtown
+2026-05-28 17:50:26 | House added: 76 fryers road, Highton
+2026-05-28 17:50:59 | Room added: C1 (Single Room) at 1 Cruisenplace
+2026-05-28 17:51:21 | Room added: B1 (Single Room) at 67 Compassway
+2026-05-28 17:51:47 | Room added: M1 (Single Room) at 151 Minerva road
+2026-05-28 17:52:09 | Room added: F1 (Single Room) at 76 fryers road
+2026-05-28 17:52:30 | Room added: B2 (Master Room) at 67 Compassway
+2026-05-28 17:54:24 | Renter registered: Andrew Kergers (9E7F0325)
+2026-05-28 17:54:45 | Booking created: D2645644 | Renter: Andrew Kergers | Room: C1
+2026-05-28 17:55:22 | Renter registered: Jimmy (37BC94A2)
+2026-05-28 17:56:47 | Payment recorded for booking D2645644: $200.00 via card

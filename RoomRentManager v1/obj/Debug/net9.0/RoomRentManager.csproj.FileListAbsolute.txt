@@ -1,0 +1,15 @@
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\bin\Debug\net9.0\RoomRentManager.exe
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\bin\Debug\net9.0\RoomRentManager.deps.json
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\bin\Debug\net9.0\RoomRentManager.runtimeconfig.json
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\bin\Debug\net9.0\RoomRentManager.dll
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\bin\Debug\net9.0\RoomRentManager.pdb
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.GeneratedMSBuildEditorConfig.editorconfig
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.AssemblyInfoInputs.cache
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.AssemblyInfo.cs
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.csproj.CoreCompileInputs.cache
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.sourcelink.json
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.dll
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\refint\RoomRentManager.dll
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.pdb
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\RoomRentManager.genruntimeconfig.cache
+E:\Masters\SIT771 - Object-Oriented Development\splashkit\RoomRentManager v1\obj\Debug\net9.0\ref\RoomRentManager.dll
