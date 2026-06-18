@@ -7,7 +7,7 @@ namespace RobotDodge
         public static void Main()
         {
             Window gameWindow = new Window("Robot Dodge", 800, 600);
-            RobotDodge game = new RobotDodge(gameWindow);
+            Player game = new Player(gameWindow);
 
             while (!game.Quit && !gameWindow.CloseRequested)
             {
