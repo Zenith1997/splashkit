@@ -53,21 +53,8 @@ namespace TriageGame.UI
             DrawText("Lives: " + gameManager.Lives, Color.Red, 210, 70, 22);
             DrawText("Time Left: " + gameManager.TimeLeft() + "s", Color.Black, 340, 70, 22);
 
-            DrawText(
-                "Choose the correct Australian Triage Scale category.",
-                Color.Black,
-                70,
-                110,
-                20
-            );
-
-            DrawText(
-                "Select an answer first. Then press SUBMIT ANSWER.",
-                SplashKit.RGBColor(40, 70, 140),
-                570,
-                140,
-                10
-            );
+            DrawText("Choose the correct Australian Triage Scale category.", Color.Black, 70, 110, 20);
+            DrawText("Select an answer first. Then press SUBMIT ANSWER.", SplashKit.RGBColor(40, 70, 140), 70, 140, 20);
         }
 
         private void DrawCurrentPatient(GameManager gameManager)
@@ -82,16 +69,8 @@ namespace TriageGame.UI
             DrawPatientImage(patient, cardRect.X + 25, cardRect.Y + 25, 280, 170);
 
             DrawText(patient.Name, Color.Black, cardRect.X + 335, cardRect.Y + 35, 26);
-
             DrawText("Scenario:", Color.Black, cardRect.X + 335, cardRect.Y + 80, 22);
-
-            DrawText(
-                patient.Scenario,
-                Color.Black,
-                cardRect.X + 335,
-                cardRect.Y + 115,
-                21
-            );
+            DrawText(patient.Scenario, Color.Black, cardRect.X + 335, cardRect.Y + 115, 21);
 
             DrawText(
                 "Patient " + (gameManager.CurrentPatientIndex + 1) + " of " + gameManager.TotalPatients(),
@@ -133,13 +112,7 @@ namespace TriageGame.UI
             double scaleX = width / bitmap.Width;
             double scaleY = height / bitmap.Height;
 
-            SplashKit.DrawBitmap(
-                bitmap,
-                x,
-                y,
-                SplashKit.OptionScaleBmp(scaleX, scaleY)
-            );
-
+            SplashKit.DrawBitmap(bitmap, x, y, SplashKit.OptionScaleBmp(scaleX, scaleY));
             SplashKit.DrawRectangle(Color.Black, x, y, width, height);
         }
 
@@ -192,13 +165,7 @@ namespace TriageGame.UI
                 textColor = Color.White;
             }
 
-            DrawText(
-                button.Text,
-                textColor,
-                button.Rect.X + 25,
-                button.Rect.Y + 22,
-                20
-            );
+            DrawText(button.Text, textColor, button.Rect.X + 25, button.Rect.Y + 22, 20);
         }
 
         private void DrawBottomInfo(GameManager gameManager)
@@ -207,14 +174,7 @@ namespace TriageGame.UI
             SplashKit.DrawRectangle(Color.Black, 70, 610, 960, 80);
 
             DrawText("Rules:", Color.Black, 90, 622, 20);
-
-            DrawText(
-                "Correct answer = +1 mark. Wrong answer = lose 1 life. You have 60 seconds.",
-                Color.Black,
-                90,
-                650,
-                18
-            );
+            DrawText("Correct = +1 mark. Wrong = lose 1 life. Your answer history appears at the end.", Color.Black, 90, 650, 18);
 
             if (gameManager.LastMessage != "")
             {
@@ -226,38 +186,65 @@ namespace TriageGame.UI
         {
             SplashKit.FillRectangle(SplashKit.RGBAColor(0, 0, 0, 180), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            SplashKit.FillRectangle(Color.White, 280, 190, 550, 350);
-            SplashKit.DrawRectangle(Color.Black, 280, 190, 550, 350);
+            SplashKit.FillRectangle(Color.White, 45, 55, 1010, 610);
+            SplashKit.DrawRectangle(Color.Black, 45, 55, 1010, 610);
 
-            DrawText("GAME OVER", Color.Black, 445, 230, 30);
+            DrawText("GAME OVER", Color.Black, 445, 75, 28);
+            DrawText("Final Score: " + gameManager.Score + " / " + gameManager.TotalPatients(), Color.Black, 380, 115, 22);
+            DrawText("Lives Left: " + gameManager.Lives, Color.Black, 420, 145, 20);
+            DrawText("Press R to restart.", Color.Blue, 430, 630, 20);
 
-            DrawText(
-                "Final Score: " + gameManager.Score + " / " + gameManager.TotalPatients(),
-                Color.Black,
-                405,
-                290,
-                24
-            );
+            DrawResponseHistory(gameManager.ResponseHistory);
+        }
 
-            DrawText("Lives Left: " + gameManager.Lives, Color.Black, 445, 330, 22);
+        private void DrawResponseHistory(List<Response> responses)
+        {
+            DrawText("Response History", Color.Black, 80, 180, 24);
 
-            DrawText("Message:", Color.Black, 360, 375, 20);
-            DrawText(gameManager.LastMessage, SplashKit.RGBColor(20, 60, 160), 360, 405, 18);
+            DrawText("Patient", Color.Black, 80, 220, 16);
+            DrawText("Your Answer", Color.Black, 210, 220, 16);
+            DrawText("Correct Answer", Color.Black, 360, 220, 16);
+            DrawText("Result", Color.Black, 530, 220, 16);
+            DrawText("Scenario", Color.Black, 650, 220, 16);
 
-            if (gameManager.Score == gameManager.TotalPatients())
+            double y = 250;
+            int maxRows = responses.Count;
+
+            for (int i = 0; i < maxRows; i++)
             {
-                DrawText("Excellent triage decisions!", SplashKit.RGBColor(0, 150, 70), 380, 455, 22);
+                Response response = responses[i];
+
+                Color resultColor = Color.Red;
+
+                if (response.IsCorrect)
+                {
+                    resultColor = SplashKit.RGBColor(0, 140, 70);
+                }
+
+                DrawText(response.PatientName, Color.Black, 80, y, 14);
+                DrawText(response.SelectedText(), Color.Black, 210, y, 14);
+                DrawText(response.CorrectText(), Color.Black, 360, y, 14);
+                DrawText(response.ResultText(), resultColor, 530, y, 14);
+                DrawText(ShortenText(response.Scenario, 42), Color.Black, 650, y, 14);
+
+                y += 18;
+
+                if (y > 600)
+                {
+                    DrawText("Only the first responses that fit on screen are shown.", Color.Red, 80, 605, 14);
+                    break;
+                }
             }
-            else if (gameManager.Score >= 10)
+        }
+
+        private string ShortenText(string text, int maxLength)
+        {
+            if (text.Length <= maxLength)
             {
-                DrawText("Good attempt. Keep practising.", Color.Blue, 380, 455, 22);
-            }
-            else
-            {
-                DrawText("You need more triage practice.", Color.Red, 380, 455, 22);
+                return text;
             }
 
-            DrawText("Press R to restart.", Color.Blue, 420, 500, 22);
+            return text.Substring(0, maxLength) + "...";
         }
     }
 }

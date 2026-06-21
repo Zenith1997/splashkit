@@ -9,6 +9,8 @@ namespace TriageGame.Game
         private const int GAME_TIME_SECONDS = 60;
 
         private List<Patient> _patients;
+        private List<Response> _responseHistory;
+
         private int _currentPatientIndex;
         private int _score;
         private int _lives;
@@ -20,6 +22,7 @@ namespace TriageGame.Game
         public GameManager()
         {
             _patients = new List<Patient>();
+            _responseHistory = new List<Response>();
             SetupGame();
         }
 
@@ -53,6 +56,11 @@ namespace TriageGame.Game
             get { return _selectedLevel; }
         }
 
+        public List<Response> ResponseHistory
+        {
+            get { return _responseHistory; }
+        }
+
         public Patient? CurrentPatient
         {
             get
@@ -69,6 +77,7 @@ namespace TriageGame.Game
         public void SetupGame()
         {
             _patients.Clear();
+            _responseHistory.Clear();
 
             AddCategory1Patients();
             AddCategory2Patients();
@@ -260,8 +269,18 @@ namespace TriageGame.Game
             }
 
             Patient currentPatient = CurrentPatient;
+            TriageLevel selectedAnswer = _selectedLevel.Value;
 
-            if (_selectedLevel == currentPatient.Level)
+            Response response = new Response(
+                currentPatient.Name,
+                currentPatient.Scenario,
+                selectedAnswer,
+                currentPatient.Level
+            );
+
+            _responseHistory.Add(response);
+
+            if (response.IsCorrect)
             {
                 _score++;
                 _lastMessage = "Correct! +1 mark. Moving to next patient.";
