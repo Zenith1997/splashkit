@@ -1,5 +1,3 @@
-using SplashKitSDK;
-
 namespace TriageGame.Models
 {
     public class Patient
@@ -7,16 +5,23 @@ namespace TriageGame.Models
         public string Name { get; private set; }
         public string Scenario { get; private set; }
         public TriageLevel Level { get; private set; }
-        public Color SpriteColor { get; private set; }
-        public string Icon { get; private set; }
 
-        public Patient(string name, string scenario, TriageLevel level, Color spriteColor, string icon)
+        public string ImagePath { get; private set; }
+        public string ImageName { get; private set; }
+
+        public Patient(
+            string name,
+            string scenario,
+            TriageLevel level,
+            string imagePath,
+            string imageName
+        )
         {
             Name = name;
             Scenario = scenario;
             Level = level;
-            SpriteColor = spriteColor;
-            Icon = icon;
+            ImagePath = imagePath;
+            ImageName = imageName;
         }
 
         public string LevelText()

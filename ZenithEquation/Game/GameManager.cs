@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using SplashKitSDK;
 using TriageGame.Models;
 
 namespace TriageGame.Game
@@ -14,7 +13,7 @@ namespace TriageGame.Game
         private int _score;
         private int _lives;
         private bool _gameFinished;
-        private string _lastMessage;
+        private string _lastMessage = "";
         private DateTime _startTime;
         private TriageLevel? _selectedLevel;
 
@@ -54,7 +53,7 @@ namespace TriageGame.Game
             get { return _selectedLevel; }
         }
 
-        public Patient CurrentPatient
+        public Patient? CurrentPatient
         {
             get
             {
@@ -86,178 +85,153 @@ namespace TriageGame.Game
             _startTime = DateTime.Now;
         }
 
+        private Patient CreatePatient(
+            int patientNumber,
+            string scenario,
+            TriageLevel level
+        )
+        {
+            return new Patient(
+                "Patient " + patientNumber,
+                scenario,
+                level,
+                "Resources/images/patient" + patientNumber + ".png",
+                "PatientImage" + patientNumber
+            );
+        }
+
         private void AddCategory1Patients()
         {
-            _patients.Add(new Patient(
-                "Patient 1",
+            _patients.Add(CreatePatient(
+                1,
                 "Not breathing and unresponsive.",
-                TriageLevel.Category1,
-                SplashKit.RGBColor(180, 0, 0),
-                "1"
+                TriageLevel.Category1
             ));
 
-            _patients.Add(new Patient(
-                "Patient 2",
+            _patients.Add(CreatePatient(
+                2,
                 "Severe airway obstruction and turning blue.",
-                TriageLevel.Category1,
-                SplashKit.RGBColor(180, 0, 0),
-                "1"
+                TriageLevel.Category1
             ));
 
-            _patients.Add(new Patient(
-                "Patient 3",
+            _patients.Add(CreatePatient(
+                3,
                 "Unconscious after major trauma with a very weak pulse.",
-                TriageLevel.Category1,
-                SplashKit.RGBColor(180, 0, 0),
-                "1"
+                TriageLevel.Category1
             ));
 
-            _patients.Add(new Patient(
-                "Patient 4",
+            _patients.Add(CreatePatient(
+                4,
                 "Sudden collapse and not responding to voice.",
-                TriageLevel.Category1,
-                SplashKit.RGBColor(180, 0, 0),
-                "1"
+                TriageLevel.Category1
             ));
         }
 
         private void AddCategory2Patients()
         {
-            _patients.Add(new Patient(
-                "Patient 5",
+            _patients.Add(CreatePatient(
+                5,
                 "Severe chest pain with sweating and shortness of breath.",
-                TriageLevel.Category2,
-                SplashKit.RGBColor(230, 80, 80),
-                "2"
+                TriageLevel.Category2
             ));
 
-            _patients.Add(new Patient(
-                "Patient 6",
+            _patients.Add(CreatePatient(
+                6,
                 "Severe breathing difficulty but still conscious.",
-                TriageLevel.Category2,
-                SplashKit.RGBColor(230, 80, 80),
-                "2"
+                TriageLevel.Category2
             ));
 
-            _patients.Add(new Patient(
-                "Patient 7",
+            _patients.Add(CreatePatient(
+                7,
                 "Severe pain after a major leg injury.",
-                TriageLevel.Category2,
-                SplashKit.RGBColor(230, 80, 80),
-                "2"
+                TriageLevel.Category2
             ));
 
-            _patients.Add(new Patient(
-                "Patient 8",
+            _patients.Add(CreatePatient(
+                8,
                 "Confused and drowsy after possible poisoning.",
-                TriageLevel.Category2,
-                SplashKit.RGBColor(230, 80, 80),
-                "2"
+                TriageLevel.Category2
             ));
         }
 
         private void AddCategory3Patients()
         {
-            _patients.Add(new Patient(
-                "Patient 9",
+            _patients.Add(CreatePatient(
+                9,
                 "Moderate bleeding from a deep cut, awake and stable.",
-                TriageLevel.Category3,
-                SplashKit.RGBColor(255, 150, 60),
-                "3"
+                TriageLevel.Category3
             ));
 
-            _patients.Add(new Patient(
-                "Patient 10",
+            _patients.Add(CreatePatient(
+                10,
                 "Possible broken arm with strong pain.",
-                TriageLevel.Category3,
-                SplashKit.RGBColor(255, 150, 60),
-                "3"
+                TriageLevel.Category3
             ));
 
-            _patients.Add(new Patient(
-                "Patient 11",
+            _patients.Add(CreatePatient(
+                11,
                 "Vomiting many times and feeling very weak.",
-                TriageLevel.Category3,
-                SplashKit.RGBColor(255, 150, 60),
-                "3"
+                TriageLevel.Category3
             ));
 
-            _patients.Add(new Patient(
-                "Patient 12",
+            _patients.Add(CreatePatient(
+                12,
                 "High fever and severe headache, alert but unwell.",
-                TriageLevel.Category3,
-                SplashKit.RGBColor(255, 150, 60),
-                "3"
+                TriageLevel.Category3
             ));
         }
 
         private void AddCategory4Patients()
         {
-            _patients.Add(new Patient(
-                "Patient 13",
+            _patients.Add(CreatePatient(
+                13,
                 "Mild asthma symptoms and speaking in full sentences.",
-                TriageLevel.Category4,
-                SplashKit.RGBColor(230, 210, 70),
-                "4"
+                TriageLevel.Category4
             ));
 
-            _patients.Add(new Patient(
-                "Patient 14",
+            _patients.Add(CreatePatient(
+                14,
                 "Sprained ankle, can walk but has pain.",
-                TriageLevel.Category4,
-                SplashKit.RGBColor(230, 210, 70),
-                "4"
+                TriageLevel.Category4
             ));
 
-            _patients.Add(new Patient(
-                "Patient 15",
+            _patients.Add(CreatePatient(
+                15,
                 "Vomiting but drinking water and no severe weakness.",
-                TriageLevel.Category4,
-                SplashKit.RGBColor(230, 210, 70),
-                "4"
+                TriageLevel.Category4
             ));
 
-            _patients.Add(new Patient(
-                "Patient 16",
+            _patients.Add(CreatePatient(
+                16,
                 "Ear pain for two days, uncomfortable but stable.",
-                TriageLevel.Category4,
-                SplashKit.RGBColor(230, 210, 70),
-                "4"
+                TriageLevel.Category4
             ));
         }
 
         private void AddCategory5Patients()
         {
-            _patients.Add(new Patient(
-                "Patient 17",
+            _patients.Add(CreatePatient(
+                17,
                 "Small rash, no fever, feels well.",
-                TriageLevel.Category5,
-                SplashKit.RGBColor(80, 190, 100),
-                "5"
+                TriageLevel.Category5
             ));
 
-            _patients.Add(new Patient(
-                "Patient 18",
+            _patients.Add(CreatePatient(
+                18,
                 "Minor sore throat, eating and drinking normally.",
-                TriageLevel.Category5,
-                SplashKit.RGBColor(80, 190, 100),
-                "5"
+                TriageLevel.Category5
             ));
 
-            _patients.Add(new Patient(
-                "Patient 19",
+            _patients.Add(CreatePatient(
+                19,
                 "Small old bruise, walking normally.",
-                TriageLevel.Category5,
-                SplashKit.RGBColor(80, 190, 100),
-                "5"
+                TriageLevel.Category5
             ));
 
-            _patients.Add(new Patient(
-                "Patient 20",
+            _patients.Add(CreatePatient(
+                20,
                 "Needs a routine medical certificate, no urgent symptoms.",
-                TriageLevel.Category5,
-                SplashKit.RGBColor(80, 190, 100),
-                "5"
+                TriageLevel.Category5
             ));
         }
 

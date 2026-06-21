@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using SplashKitSDK;
 using TriageGame.Game;
 using TriageGame.Models;
@@ -11,10 +12,12 @@ namespace TriageGame.UI
         private const int SCREEN_HEIGHT = 720;
 
         private Font _font;
+        private Dictionary<string, Bitmap> _loadedBitmaps;
 
         public GameRenderer()
         {
             _font = new Font("GameFont", "game_font.ttf");
+            _loadedBitmaps = new Dictionary<string, Bitmap>();
         }
 
         public void DrawGame(Window window, GameManager gameManager, List<Button> buttons)
@@ -61,31 +64,31 @@ namespace TriageGame.UI
             DrawText(
                 "Select an answer first. Then press SUBMIT ANSWER.",
                 SplashKit.RGBColor(40, 70, 140),
-                70,
+                570,
                 140,
-                20
+                10
             );
         }
 
         private void DrawCurrentPatient(GameManager gameManager)
         {
-            Patient patient = gameManager.CurrentPatient;
+            Patient patient = gameManager.CurrentPatient!;
 
-            Rectangle cardRect = SplashKit.RectangleFrom(120, 185, 860, 235);
+            Rectangle cardRect = SplashKit.RectangleFrom(90, 180, 920, 245);
 
             SplashKit.FillRectangle(Color.White, cardRect);
             SplashKit.DrawRectangle(Color.Black, cardRect);
 
-            DrawPatientSprite(patient, cardRect.X + 55, cardRect.Y + 35);
+            DrawPatientImage(patient, cardRect.X + 25, cardRect.Y + 25, 280, 170);
 
-            DrawText(patient.Name, Color.Black, cardRect.X + 215, cardRect.Y + 35, 26);
+            DrawText(patient.Name, Color.Black, cardRect.X + 335, cardRect.Y + 35, 26);
 
-            DrawText("Scenario:", Color.Black, cardRect.X + 215, cardRect.Y + 80, 22);
+            DrawText("Scenario:", Color.Black, cardRect.X + 335, cardRect.Y + 80, 22);
 
             DrawText(
                 patient.Scenario,
                 Color.Black,
-                cardRect.X + 215,
+                cardRect.X + 335,
                 cardRect.Y + 115,
                 21
             );
@@ -93,10 +96,60 @@ namespace TriageGame.UI
             DrawText(
                 "Patient " + (gameManager.CurrentPatientIndex + 1) + " of " + gameManager.TotalPatients(),
                 SplashKit.RGBColor(80, 80, 80),
-                cardRect.X + 215,
+                cardRect.X + 335,
                 cardRect.Y + 165,
                 20
             );
+        }
+
+        private Bitmap? GetPatientBitmap(Patient patient)
+        {
+            if (_loadedBitmaps.ContainsKey(patient.ImageName))
+            {
+                return _loadedBitmaps[patient.ImageName];
+            }
+
+            if (!File.Exists(patient.ImagePath))
+            {
+                return null;
+            }
+
+            Bitmap bitmap = SplashKit.LoadBitmap(patient.ImageName, patient.ImagePath);
+            _loadedBitmaps[patient.ImageName] = bitmap;
+
+            return bitmap;
+        }
+
+        private void DrawPatientImage(Patient patient, double x, double y, double width, double height)
+        {
+            Bitmap? bitmap = GetPatientBitmap(patient);
+
+            if (bitmap == null)
+            {
+                DrawMissingImagePlaceholder(patient, x, y, width, height);
+                return;
+            }
+
+            double scaleX = width / bitmap.Width;
+            double scaleY = height / bitmap.Height;
+
+            SplashKit.DrawBitmap(
+                bitmap,
+                x,
+                y,
+                SplashKit.OptionScaleBmp(scaleX, scaleY)
+            );
+
+            SplashKit.DrawRectangle(Color.Black, x, y, width, height);
+        }
+
+        private void DrawMissingImagePlaceholder(Patient patient, double x, double y, double width, double height)
+        {
+            SplashKit.FillRectangle(SplashKit.RGBColor(230, 230, 230), x, y, width, height);
+            SplashKit.DrawRectangle(Color.Black, x, y, width, height);
+
+            DrawText("Missing image", Color.Red, x + 25, y + 55, 18);
+            DrawText(patient.ImagePath, Color.Black, x + 15, y + 95, 13);
         }
 
         private void DrawAnswerButtons(List<Button> buttons, TriageLevel? selectedLevel)
@@ -167,26 +220,6 @@ namespace TriageGame.UI
             {
                 DrawText(gameManager.LastMessage, SplashKit.RGBColor(20, 60, 160), 90, 570, 20);
             }
-        }
-
-        private void DrawPatientSprite(Patient patient, double x, double y)
-        {
-            SplashKit.FillCircle(SplashKit.RGBColor(240, 200, 170), x + 40, y + 25, 25);
-            SplashKit.DrawCircle(Color.Black, x + 40, y + 25, 25);
-
-            SplashKit.FillRectangle(patient.SpriteColor, x + 15, y + 55, 50, 70);
-            SplashKit.DrawRectangle(Color.Black, x + 15, y + 55, 50, 70);
-
-            SplashKit.FillRectangle(SplashKit.RGBColor(70, 90, 130), x + 15, y + 125, 20, 35);
-            SplashKit.FillRectangle(SplashKit.RGBColor(70, 90, 130), x + 45, y + 125, 20, 35);
-
-            SplashKit.FillCircle(Color.Black, x + 30, y + 20, 3);
-            SplashKit.FillCircle(Color.Black, x + 50, y + 20, 3);
-            SplashKit.DrawLine(Color.Black, x + 30, y + 38, x + 50, y + 38);
-
-            SplashKit.FillCircle(Color.White, x + 75, y + 20, 20);
-            SplashKit.DrawCircle(Color.Black, x + 75, y + 20, 20);
-            DrawText(patient.Icon, Color.Black, x + 67, y + 4, 22);
         }
 
         private void DrawResultScreen(GameManager gameManager)
