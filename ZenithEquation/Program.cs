@@ -42,7 +42,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(45, 455, 170, 70),
-                "CAT 1",
+                "1",
                 SplashKit.RGBColor(180, 0, 0),
                 TriageLevel.Category1,
                 false
@@ -50,7 +50,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(225, 455, 170, 70),
-                "CAT 2",
+                "2",
                 SplashKit.RGBColor(230, 80, 80),
                 TriageLevel.Category2,
                 false
@@ -58,7 +58,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(405, 455, 170, 70),
-                "CAT 3",
+                "3",
                 SplashKit.RGBColor(255, 150, 60),
                 TriageLevel.Category3,
                 false
@@ -66,7 +66,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(585, 455, 170, 70),
-                "CAT 4",
+                "4",
                 SplashKit.RGBColor(230, 210, 70),
                 TriageLevel.Category4,
                 false
@@ -74,7 +74,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(765, 455, 170, 70),
-                "CAT 5",
+                "5",
                 SplashKit.RGBColor(80, 190, 100),
                 TriageLevel.Category5,
                 false
@@ -82,7 +82,7 @@ namespace TriageGame
 
             buttons.Add(new Button(
                 SplashKit.RectangleFrom(405, 540, 290, 55),
-                "SUBMIT ANSWER",
+                "SUBMIT",
                 SplashKit.RGBColor(30, 90, 180),
                 null,
                 true

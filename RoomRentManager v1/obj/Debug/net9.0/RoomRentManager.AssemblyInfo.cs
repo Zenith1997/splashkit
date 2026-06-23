@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoomRentManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d886479b4eebf63bac772d36c45d06ed77da86d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53752a42dc3738451a63c90993ea15bee6446579")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoomRentManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoomRentManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
